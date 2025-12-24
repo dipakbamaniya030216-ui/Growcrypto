@@ -2,50 +2,47 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width">
 <title>Login</title>
 <style>
-body{background:#0b0f1a;font-family:Arial;color:#fff}
+body{background:#0b0f1a;color:#fff;font-family:Arial}
 .box{margin:80px 20px;background:#12182b;padding:20px;border-radius:12px}
 input,button{width:100%;padding:12px;margin-top:10px;border:none;border-radius:8px}
 button{background:#f0b90b;font-weight:bold}
-a{color:#f0b90b;text-decoration:none}
+a{color:#f0b90b}
 </style>
 </head>
 <body>
 
 <div class="box">
 <h2>Login</h2>
-
-<input id="lu" placeholder="Username">
+<input id="lu" placeholder="Email">
 <input id="lp" type="password" placeholder="Password">
-
 <button onclick="login()">Login</button>
-<p><a href="register.html">Create new account</a></p>
+<p><a href="register.html">Create account</a></p>
 </div>
 
+<script src="firebase.js"></script>
 <script>
 function login(){
-  var u = document.getElementById("lu").value;
-  var p = document.getElementById("lp").value;
+  const email=document.getElementById("lu").value;
+  const pass=document.getElementById("lp").value;
 
-  // ADMIN LOGIN
-  if(u==="admin" && p==="admin123"){
-    localStorage.setItem("role","admin");
-    window.location.href="admin.html";
-    return;
-  }
+  auth.signInWithEmailAndPassword(email,pass)
+  .then(res=>{
+    return db.collection("users").doc(res.user.uid).get();
+  })
+  .then(doc=>{
+    localStorage.setItem("uid",doc.id);
+    localStorage.setItem("role",doc.data().role);
 
-  // USER LOGIN
-  var su = localStorage.getItem("user");
-  var sp = localStorage.getItem("pass");
-
-  if(u===su && p===sp){
-    localStorage.setItem("role","user");
-    window.location.href="dashboard.html";
-  }else{
-    alert("Wrong username or password");
-  }
+    if(doc.data().role==="admin"){
+      location="admin.html";
+    }else{
+      location="dashboard.html";
+    }
+  })
+  .catch(err=>alert(err.message));
 }
 </script>
 
