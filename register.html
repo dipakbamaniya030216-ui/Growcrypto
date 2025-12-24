@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width">
 <title>Register</title>
 <style>
-body{background:#0b0f1a;font-family:Arial;color:#fff}
+body{background:#0b0f1a;color:#fff;font-family:Arial}
 .box{margin:80px 20px;background:#12182b;padding:20px;border-radius:12px}
 input,button{width:100%;padding:12px;margin-top:10px;border:none;border-radius:8px}
 button{background:#f0b90b;font-weight:bold}
@@ -15,28 +15,34 @@ button{background:#f0b90b;font-weight:bold}
 
 <div class="box">
 <h2>Register</h2>
-<input id="ru" placeholder="Username">
+<input id="ru" placeholder="Email">
 <input id="rp" type="password" placeholder="Password">
 <button onclick="register()">Register</button>
 </div>
 
+<script src="firebase.js"></script>
 <script>
 function register(){
-  var u = document.getElementById("ru").value;
-  var p = document.getElementById("rp").value;
+  const email=document.getElementById("ru").value;
+  const pass=document.getElementById("rp").value;
 
-  if(u==="" || p===""){
-    alert("Fill all fields");
-    return;
-  }
-
-  localStorage.setItem("user", u);
-  localStorage.setItem("pass", p);
-
-  alert("Registration successful");
-  window.location.href="login.html";
+  auth.createUserWithEmailAndPassword(email,pass)
+  .then(res=>{
+    return db.collection("users").doc(res.user.uid).set({
+      email: email,
+      role: "user",
+      balance: 0,
+      rank: "Beginner",
+      team: 0
+    });
+  })
+  .then(()=>{
+    alert("Registered Successfully");
+    location="login.html";
+  })
+  .catch(err=>alert(err.message));
 }
 </script>
 
 </body>
-</html>
+  </html>
