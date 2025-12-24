@@ -1,0 +1,12 @@
+<script>
+if(localStorage.role!=="user")location="login.html";
+</script>
+
+<h2>User Dashboard</h2>
+<a href="team.html">My Team</a><br>
+<a href="withdraw.html">Withdraw</a><br>
+<button onclick="logout()">Logout</button>
+
+<script>
+function logout(){localStorage.clear();location="login.html";}
+</script>

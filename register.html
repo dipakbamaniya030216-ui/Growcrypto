@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Register</title>
+<style>
+body{background:#0b0f1a;font-family:Arial;color:#fff}
+.box{margin:80px 20px;background:#12182b;padding:20px;border-radius:12px}
+input,button{width:100%;padding:12px;margin-top:10px;border:none;border-radius:8px}
+button{background:#f0b90b;font-weight:bold}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Register</h2>
+<input id="u" placeholder="Username">
+<input id="p" type="password" placeholder="Password">
+<button onclick="reg()">Register</button>
+</div>
+
+<script>
+function reg(){
+localStorage.user=u.value;
+localStorage.pass=p.value;
+alert("Registered");
+location="login.html";
+}
+</script>
+</body>
+</html>

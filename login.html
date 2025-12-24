@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>Login</title>
+<style>
+body{background:#0b0f1a;font-family:Arial;color:#fff}
+.box{margin:80px 20px;background:#12182b;padding:20px;border-radius:12px}
+input,button{width:100%;padding:12px;margin-top:10px;border:none;border-radius:8px}
+button{background:#f0b90b;font-weight:bold}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Login</h2>
+<input id="u" placeholder="Username">
+<input id="p" type="password" placeholder="Password">
+<button onclick="login()">Login</button>
+<p><a href="register.html" style="color:#f0b90b">Register</a></p>
+</div>
+
+<script>
+function login(){
+let u=u=document.getElementById("u").value;
+let p=document.getElementById("p").value;
+
+if(u==="admin" && p==="admin123"){
+localStorage.setItem("role","admin");
+location="admin.html"; return;
+}
+
+if(u===localStorage.user && p===localStorage.pass){
+localStorage.setItem("role","user");
+location="dashboard.html";
+}else{alert("Wrong login");}
+}
+</script>
+</body>
+</html>
