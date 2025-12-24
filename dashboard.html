@@ -1,17 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0b0f1a;color:#fff}
+
+/* TOP BAR */
+.top{
+background:linear-gradient(135deg,#f0b90b,#ff9800);
+padding:15px;
+text-align:center;
+font-weight:bold;
+color:#000;
+}
+
+/* PROFILE */
+.profile{
+background:#12182b;
+margin:15px;
+padding:15px;
+border-radius:12px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+.profile img{
+width:60px;height:60px;border-radius:50%;
+border:2px solid #f0b90b;
+}
+.profile h3{font-size:18px}
+.profile p{font-size:13px;opacity:.8}
+
+/* CARDS */
+.cards{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin:15px;
+}
+.card{
+background:#12182b;
+padding:15px;
+border-radius:12px;
+text-align:center;
+}
+.card span{font-size:13px;opacity:.8}
+.card h2{margin-top:5px;color:#f0b90b}
+
+/* MENU */
+.menu{margin:15px}
+.menu a{
+display:block;
+background:#12182b;
+margin-bottom:10px;
+padding:14px;
+border-radius:10px;
+text-decoration:none;
+color:#fff;
+font-size:15px;
+border-left:4px solid #f0b90b;
+}
+
+/* LOGOUT */
+.logout{
+margin:20px;
+background:red;
+padding:12px;
+border-radius:10px;
+text-align:center;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* BOTTOM NAV */
+.nav{
+position:fixed;
+bottom:0;left:0;
+width:100%;
+background:#0f1424;
+display:flex;
+justify-content:space-around;
+padding:10px 0;
+}
+.nav a{
+color:#fff;
+text-decoration:none;
+font-size:13px;
+text-align:center;
+}
+.nav span{display:block;font-size:18px}
+</style>
+</head>
+
+<body>
+
 <script>
 if(localStorage.getItem("role")!=="user"){
-  window.location.href="login.html";
+location="login.html";
 }
 </script>
+
+<div class="top">User Dashboard</div>
+
+<div class="profile">
+<img src="https://i.imgur.com/6VBx3io.png">
+<div>
+<h3>User</h3>
+<p>Rank: Beginner</p>
+</div>
+</div>
+
+<div class="cards">
+<div class="card">
+<span>Total Invest</span>
+<h2>0.50 BNB</h2>
+</div>
+<div class="card">
+<span>Total Income</span>
+<h2>0.12 BNB</h2>
+</div>
+<div class="card">
+<span>Daily Income</span>
+<h2>0.01 BNB</h2>
+</div>
+<div class="card">
+<span>Team</span>
+<h2>25</h2>
+</div>
+</div>
+
+<div class="menu">
+<a href="team.html">👥 My Team</a>
+<a href="withdraw.html">💳 Withdraw</a>
+<a href="#">📊 Income History</a>
+<a href="#">⚙️ Settings</a>
+</div>
+
+<div class="logout" onclick="logout()">Logout</div>
+
+<div class="nav">
+<a href="index.html"><span>🏠</span>Home</a>
+<a href="dashboard.html"><span>📊</span>Dashboard</a>
+<a href="team.html"><span>👥</span>Team</a>
+<a href="withdraw.html"><span>💳</span>Withdraw</a>
+</div>
+
 <script>
-if(localStorage.role!=="user")location="login.html";
+function logout(){
+localStorage.clear();
+location="login.html";
+}
 </script>
 
-<h2>User Dashboard</h2>
-<a href="team.html">My Team</a><br>
-<a href="withdraw.html">Withdraw</a><br>
-<button onclick="logout()">Logout</button>
-
-<script>
-function logout(){localStorage.clear();location="login.html";}
-</script>
+</body>
+</html>
