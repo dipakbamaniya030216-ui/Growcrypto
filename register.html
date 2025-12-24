@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register</title>
 <style>
 body{background:#0b0f1a;font-family:Arial;color:#fff}
@@ -15,18 +15,28 @@ button{background:#f0b90b;font-weight:bold}
 
 <div class="box">
 <h2>Register</h2>
-<input id="u" placeholder="Username">
-<input id="p" type="password" placeholder="Password">
-<button onclick="reg()">Register</button>
+<input id="ru" placeholder="Username">
+<input id="rp" type="password" placeholder="Password">
+<button onclick="register()">Register</button>
 </div>
 
 <script>
-function reg(){
-localStorage.user=u.value;
-localStorage.pass=p.value;
-alert("Registered");
-location="login.html";
+function register(){
+  var u = document.getElementById("ru").value;
+  var p = document.getElementById("rp").value;
+
+  if(u==="" || p===""){
+    alert("Fill all fields");
+    return;
+  }
+
+  localStorage.setItem("user", u);
+  localStorage.setItem("pass", p);
+
+  alert("Registration successful");
+  window.location.href="login.html";
 }
 </script>
+
 </body>
 </html>
