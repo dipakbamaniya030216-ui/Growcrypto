@@ -1,4 +1,9 @@
 <script>
+if(localStorage.getItem("role")!=="user"){
+  window.location.href="login.html";
+}
+</script>
+<script>
 if(localStorage.role!=="user")location="login.html";
 </script>
 
