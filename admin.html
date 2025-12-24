@@ -1,18 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+body{background:#0b0f1a;color:#fff}
+
+/* TOP */
+.top{
+background:linear-gradient(135deg,#ff3d00,#ff9100);
+padding:15px;
+text-align:center;
+font-weight:bold;
+}
+
+/* BOX */
+.box{
+background:#12182b;
+margin:15px;
+padding:15px;
+border-radius:12px;
+}
+
+/* STATS */
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin:15px;
+}
+.card{
+background:#12182b;
+padding:15px;
+border-radius:12px;
+text-align:center;
+}
+.card span{font-size:13px;opacity:.8}
+.card h2{color:#ff9100;margin-top:5px}
+
+/* ACTIONS */
+.action button{
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:8px;
+font-weight:bold;
+background:#ff9100;
+cursor:pointer;
+}
+
+/* LOGOUT */
+.logout{
+margin:20px;
+background:red;
+padding:12px;
+border-radius:10px;
+text-align:center;
+font-weight:bold;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
 <script>
 if(localStorage.getItem("role")!=="admin"){
-  window.location.href="login.html";
+location="login.html";
 }
 </script>
-<script>
-if(localStorage.role!=="admin")location="login.html";
-</script>
 
-<h2>ADMIN PANEL</h2>
-<button>Change Rank</button>
+<div class="top">ADMIN DASHBOARD</div>
+
+<div class="stats">
+<div class="card">
+<span>Total Users</span>
+<h2>128</h2>
+</div>
+<div class="card">
+<span>Total Withdraw</span>
+<h2>12.5 BNB</h2>
+</div>
+<div class="card">
+<span>Pending Withdraw</span>
+<h2>5</h2>
+</div>
+<div class="card">
+<span>Total Income</span>
+<h2>35 BNB</h2>
+</div>
+</div>
+
+<div class="box action">
+<h3>User Control</h3>
+<button>Change User Rank</button>
 <button>Add Balance</button>
+<button>Block User</button>
+</div>
+
+<div class="box action">
+<h3>Withdraw Control</h3>
 <button>Approve Withdraw</button>
-<button onclick="logout()">Logout</button>
+<button>Reject Withdraw</button>
+</div>
+
+<div class="logout" onclick="logout()">Logout</div>
 
 <script>
-function logout(){localStorage.clear();location="login.html";}
+function logout(){
+localStorage.clear();
+location="login.html";
+}
 </script>
+
+</body>
+</html>
