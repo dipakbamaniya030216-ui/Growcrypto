@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+body{
+    background:#0b0f1a;
+    color:#fff;
+}
+
+/* TOP BAR */
+.topbar{
+    background:linear-gradient(135deg,#f0b90b,#ff8c00);
+    padding:15px;
+    text-align:center;
+    font-weight:bold;
+    font-size:18px;
+}
+
+/* PROFILE */
+.profile{
+    background:#12182b;
+    margin:15px;
+    padding:15px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+}
+.profile img{
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    border:2px solid #f0b90b;
+}
+.profile div{
+    margin-left:15px;
+}
+.profile h3{
+    font-size:18px;
+}
+.profile p{
+    font-size:14px;
+    opacity:0.8;
+}
+
+/* STATS */
+.stats{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin:15px;
+}
+.card{
+    background:#12182b;
+    padding:15px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 0 10px rgba(240,185,11,0.15);
+}
+.card h4{
+    font-size:14px;
+    opacity:0.8;
+}
+.card p{
+    font-size:18px;
+    margin-top:8px;
+    color:#f0b90b;
+    font-weight:bold;
+}
+
+/* MENU */
+.menu{
+    margin:15px;
+}
+.menu a{
+    display:block;
+    background:#12182b;
+    padding:14px;
+    margin-bottom:10px;
+    border-radius:10px;
+    text-decoration:none;
+    color:#fff;
+    font-size:15px;
+    border-left:4px solid #f0b90b;
+}
+
+/* BOTTOM NAV */
+.bottom-nav{
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    background:#0f1424;
+    display:flex;
+    justify-content:space-around;
+    padding:10px 0;
+}
+.bottom-nav a{
+    color:#fff;
+    text-decoration:none;
+    font-size:13px;
+    text-align:center;
+}
+.bottom-nav a span{
+    display:block;
+    font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="topbar">
+    User Dashboard
+</div>
+
+<div class="profile">
+    <img src="https://i.imgur.com/6VBx3io.png" alt="Profile">
+    <div>
+        <h3>Dipak</h3>
+        <p>Rank: Beginner</p>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="card">
+        <h4>Total Investment</h4>
+        <p>0.50 BNB</p>
+    </div>
+    <div class="card">
+        <h4>Total Income</h4>
+        <p>0.12 BNB</p>
+    </div>
+    <div class="card">
+        <h4>Daily Income</h4>
+        <p>0.01 BNB</p>
+    </div>
+    <div class="card">
+        <h4>Team Members</h4>
+        <p>25</p>
+    </div>
+</div>
+
+<div class="menu">
+    <a href="#">💼 My Plan</a>
+    <a href="#">📈 Income History</a>
+    <a href="#">👥 My Team</a>
+    <a href="#">💳 Withdraw</a>
+    <a href="#">⚙️ Settings</a>
+</div>
+
+<div class="bottom-nav">
+    <a href="index.html"><span>🏠</span>Home</a>
+    <a href="#"><span>📊</span>Dashboard</a>
+    <a href="#"><span>👥</span>Team</a>
+    <a href="#"><span>⚙️</span>Settings</a>
+</div>
+
+</body>
+</html>
