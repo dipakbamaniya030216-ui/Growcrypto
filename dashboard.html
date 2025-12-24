@@ -1,89 +1,121 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>User Dashboard</title>
+<title>Crypto Dashboard</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
-body{background:#0b0f1a;color:#fff}
-.top{
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#0a0f1e;
+color:#fff;
+}
+.header{
+padding:18px;
 background:linear-gradient(135deg,#f0b90b,#ff9800);
-padding:15px;
-text-align:center;
 color:#000;
+font-size:20px;
 font-weight:bold;
 }
-.card{
-background:#12182b;
+.wallet{
 margin:15px;
-padding:15px;
-border-radius:12px;
+padding:20px;
+border-radius:16px;
+background:linear-gradient(135deg,#1b233a,#12182b);
+box-shadow:0 0 20px rgba(240,185,11,.2);
 }
-.btn{
-background:red;
-color:#fff;
+.balance{
+font-size:28px;
+font-weight:bold;
+margin-top:10px;
+}
+.small{
+opacity:.8;
+font-size:13px;
+}
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin:15px;
+}
+.box{
+background:#12182b;
+padding:15px;
+border-radius:14px;
+text-align:center;
+}
+.box b{display:block;margin-top:8px}
+.action{
+margin:15px;
+}
+.action button{
+width:100%;
+padding:14px;
 border:none;
-padding:10px;
-border-radius:8px;
-width:90%;
-margin:20px auto;
-display:block;
+border-radius:14px;
+background:#f0b90b;
+font-size:16px;
+font-weight:bold;
+}
+.logout{
+margin:20px;
+text-align:center;
+color:#ff4d4d;
 }
 </style>
 </head>
 
 <body>
 
-<div class="top">User Dashboard</div>
-<div class="card" id="info">Loading user data...</div>
-<button class="btn" onclick="logout()">Logout</button>
+<div class="header">🚀 Crypto BNB Dashboard</div>
+
+<div class="wallet">
+<div class="small">Total Balance</div>
+<div class="balance" id="bal">Loading...</div>
+<div class="small" id="email"></div>
+</div>
+
+<div class="grid">
+<div class="box">Rank<b id="rank">-</b></div>
+<div class="box">Team<b id="team">-</b></div>
+<div class="box">Status<b>Active</b></div>
+<div class="box">Plan<b>BNB Smart</b></div>
+</div>
+
+<div class="action">
+<button onclick="alert('Withdraw system coming next')">Withdraw</button>
+</div>
+
+<div class="logout" onclick="logout()">Logout</div>
 
 <!-- Firebase -->
 <script src="firebase.js"></script>
 
 <script>
-/* 🔐 AUTH CHECK */
 firebase.auth().onAuthStateChanged(function(user){
-  if(!user){
-    window.location.href = "login.html";
-    return;
-  }
+ if(!user){
+  location="login.html";
+  return;
+ }
 
-  // USER LOGGED IN → LOAD DATA
-  loadUserData(user.uid);
+ firebase.firestore().collection("users").doc(user.uid).get()
+ .then(function(doc){
+  const d=doc.data();
+  document.getElementById("bal").innerText=d.balance+" BNB";
+  document.getElementById("rank").innerText=d.rank;
+  document.getElementById("team").innerText=d.team;
+  document.getElementById("email").innerText=d.email;
+ });
 });
 
-/* 📦 LOAD USER DATA */
-function loadUserData(uid){
-  firebase.firestore().collection("users").doc(uid).get()
-  .then(function(doc){
-    if(!doc.exists){
-      document.getElementById("info").innerHTML = "User data not found";
-      return;
-    }
-
-    const d = doc.data();
-    document.getElementById("info").innerHTML = `
-      <h3>Email: ${d.email}</h3>
-      <p>Rank: ${d.rank}</p>
-      <p>Balance: ${d.balance} BNB</p>
-      <p>Team: ${d.team}</p>
-    `;
-  })
-  .catch(function(err){
-    document.getElementById("info").innerHTML = "Error loading data";
-    console.error(err);
-  });
-}
-
-/* 🚪 LOGOUT */
 function logout(){
-  firebase.auth().signOut().then(function(){
-    localStorage.clear();
-    window.location.href = "login.html";
-  });
+ firebase.auth().signOut().then(()=>{
+  localStorage.clear();
+  location="login.html";
+ });
 }
 </script>
 
